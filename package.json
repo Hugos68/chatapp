@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "paraglide-js compile --project ./project.inlang && vite build",
+		"build": "vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -12,12 +12,9 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest",
-		"postinstall": "paraglide-js compile --project ./project.inlang"
+		"test:unit": "vitest"
 	},
 	"devDependencies": {
-		"@inlang/paraglide-js": "1.0.0-prerelease.22",
-		"@inlang/paraglide-js-adapter-vite": "^1.0.3",
 		"@playwright/test": "^1.28.1",
 		"@supabase/ssr": "^0.0.10",
 		"@supabase/supabase-js": "^2.39.1",

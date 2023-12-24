@@ -8,7 +8,6 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			$paraglide: './src/paraglide',
 			$styles: './src/styles'
 		}
 	}
