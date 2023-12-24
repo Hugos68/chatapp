@@ -1,4 +1,6 @@
+import { browser } from '$app/environment';
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
+import { isAvailableLanguageTag, setLanguageTag } from '$paraglide/runtime';
 import { createBrowserClient, isBrowser, parse } from '@supabase/ssr';
 
 export const load = async ({ fetch, data, depends }) => {
@@ -19,6 +21,10 @@ export const load = async ({ fetch, data, depends }) => {
 			}
 		}
 	});
+
+	if (browser && isAvailableLanguageTag(document.documentElement.lang)) {
+		setLanguageTag(document.documentElement.lang);
+	}
 
 	const {
 		data: { session }
