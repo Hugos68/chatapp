@@ -2,9 +2,11 @@ import { redirect, type Handle } from '@sveltejs/kit';
 
 export const authGuards: Handle = async ({ event, resolve }) => {
 	const authenticated = !!(await event.locals.getSession());
-;	const accessingProtectedPage = event.route.id?.startsWith('/(app)/(protected)/');
-	const accessingUnprotectedPage = event.route.id?.startsWith('/(app)/(unprotected)/');
-    
+	const accessingProtectedPage = event.route.id?.startsWith('/(app)/[[lang=lang]]/(protected)/');
+	const accessingUnprotectedPage = event.route.id?.startsWith(
+		'/(app)/[[lang=lang]]/(unprotected)/'
+	);
+
 	if (!authenticated && accessingProtectedPage) {
 		redirect(301, '/login');
 	}

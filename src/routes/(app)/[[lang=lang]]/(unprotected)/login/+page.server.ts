@@ -11,9 +11,7 @@ export const actions: Actions = {
 			error(400, validation.issues[0]);
 		}
 
-		const { error: signInError } = await supabase.auth.signInWithPassword(
-			validation.output
-		);
+		const { error: signInError } = await supabase.auth.signInWithPassword(validation.output);
 
 		if (signInError) {
 			error(400, signInError.message);
