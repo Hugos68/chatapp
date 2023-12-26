@@ -38,6 +38,9 @@ devDependencies:
   '@typescript-eslint/parser':
     specifier: ^6.0.0
     version: 6.15.0(eslint@8.56.0)(typescript@5.3.3)
+  action-archive:
+    specifier: ^0.6.1
+    version: 0.6.1
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.32)
@@ -972,6 +975,10 @@ packages:
     resolution: {integrity: sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: true
+
+  /action-archive@0.6.1:
+    resolution: {integrity: sha512-qydxRhRNwegI+gvsa2XWSdw7Sh+sEN6fdXPvUWKg+WAalyMomLPBskTU22N/CRqTMKy7hySwMx4P1qVtpm/Nhg==}
     dev: true
 
   /agent-base@7.1.0:

@@ -1,6 +1,7 @@
 <script>
-	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
+	import CreatePostDialog from '$lib/components/dialogs/CreatePostDialog.svelte';
+	import { dialogStore } from '$lib/stores/dialogStore';
 	import { CircleUser, Heading, PlusCircle } from 'lucide-svelte';
 </script>
 
@@ -12,9 +13,10 @@
 	</nav>
 	<nav class="flex items-center gap-8">
 		{#if !!$page.data.session}
-			<form method="post" action="?/createPost" use:enhance>
-				<button aria-label="Create"><PlusCircle size="32" /></button>
-			</form>
+			<button
+				on:click={() => dialogStore.trigger({ component: CreatePostDialog })}
+				aria-label="Create"><PlusCircle size="32" /></button
+			>
 			<a aria-label="Account" href="/account"><CircleUser size="32" /></a>
 		{:else}
 			<a href="/login">Login</a>
