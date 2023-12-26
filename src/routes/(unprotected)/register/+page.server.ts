@@ -17,6 +17,6 @@ export const actions: Actions = {
 			error(400, signUpError.message);
 		}
 
-		redirect(301, '/chats');
+		redirect(301, '/my-posts');
 	}
 };
