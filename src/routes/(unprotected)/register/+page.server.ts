@@ -11,12 +11,22 @@ export const actions: Actions = {
 			error(400, validation.issues[0]);
 		}
 
-		const { error: signUpError } = await supabase.auth.signUp({ ...validation.output });
+		const { email, password, username } = validation.output;
+
+		const { error: signUpError } = await supabase.auth.signUp({
+			email,
+			password,
+			options: {
+				data: {
+					username
+				}
+			}
+		});
 
 		if (signUpError) {
 			error(400, signUpError.message);
 		}
 
-		redirect(301, '/my-posts');
+		redirect(301, '/conversations');
 	}
 };

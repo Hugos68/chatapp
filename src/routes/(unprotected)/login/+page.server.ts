@@ -17,6 +17,6 @@ export const actions: Actions = {
 			error(400, signInError.message);
 		}
 
-		redirect(301, '/chats');
+		redirect(301, '/conversations');
 	}
 };

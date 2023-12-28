@@ -2,6 +2,7 @@ import { object, string, email, custom } from 'valibot';
 
 export const registerSchema = object(
 	{
+		username: string(),
 		email: string([email()]),
 		password: string(),
 		confirmPassword: string()

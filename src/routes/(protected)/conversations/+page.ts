@@ -1,7 +1,9 @@
 import { redirect } from '@sveltejs/kit';
 
-export async function load() {
-	// TODO: Redirect to last visited chat
+export async function load({ parent }) {
+	const { conversations } = await parent();
 
-	throw redirect(303, '/conversations/1');
+	if (conversations.length > 0) {
+		throw redirect(303, `/conversations/${conversations[0].id}`);
+	}
 }

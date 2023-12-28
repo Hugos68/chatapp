@@ -1,4 +1,4 @@
-import type { Table } from '$lib/supabase/types';
+import type { ExtractTableType } from '$lib/supabase/types';
 import { error } from '@sveltejs/kit';
 
 export async function load({ parent }) {
@@ -6,7 +6,7 @@ export async function load({ parent }) {
 	const { data: conversations, error: conversationsError } = await supabase
 		.from('conversations')
 		.select('*')
-		.returns<Table<'conversations'>>();
+		.returns<ExtractTableType<'conversations'>[]>();
 
 	if (conversationsError) {
 		error(400, conversationsError.message);
