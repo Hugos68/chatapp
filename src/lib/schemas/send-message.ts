@@ -1,5 +1,5 @@
-import { object, string } from 'valibot';
+import { minLength, object, string } from 'valibot';
 
 export const sendMessageSchema = object({
-	message: string()
+	message: string([minLength(1)])
 });

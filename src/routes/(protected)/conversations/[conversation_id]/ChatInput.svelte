@@ -5,10 +5,13 @@
 
 	let sending = false;
 
+	let input: HTMLInputElement | null = null;
+
 	const sendMessage: SubmitFunction = () => {
 		sending = true;
 		return async ({ update }) => {
 			await update();
+			input?.focus();
 			sending = false;
 		};
 	};
@@ -18,12 +21,15 @@
 	class="h-10 grid grid-cols-[1fr_10%]"
 	method="post"
 	action="?/sendMessage"
+	data-sveltekit-keepfocus
 	use:enhance={sendMessage}
 >
 	<input
 		class="bg-stone-300 dark:bg-stone-700 border-none"
 		placeholder="Enter a message..."
 		name="message"
+		required
+		bind:this={input}
 	/>
 	<button
 		class="bg-stone-400 dark:bg-stone-600 flex justify-center items-center"

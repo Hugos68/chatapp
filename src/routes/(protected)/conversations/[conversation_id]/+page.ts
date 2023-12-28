@@ -6,13 +6,13 @@ export async function load({ params: { conversation_id }, parent }) {
 
 	const conversationWithMessagesQuery = supabase
 		.from('conversations')
-		.select('*, messages (*)')
+		.select('*, messages (*, profile:profiles (*))')
 		.eq('id', conversation_id)
 		.order('created_at', { referencedTable: 'messages', ascending: false })
 		.limit(1)
 		.single();
 
-	type ConversationWithMessage = QueryData<typeof conversationWithMessagesQuery>;
+	type ConversationWithMessageAndProfile = QueryData<typeof conversationWithMessagesQuery>;
 
 	const { data: conversation, error: conversationError } = await conversationWithMessagesQuery;
 
@@ -21,6 +21,6 @@ export async function load({ params: { conversation_id }, parent }) {
 	}
 
 	return {
-		conversation: conversation as ConversationWithMessage
+		conversation: conversation as ConversationWithMessageAndProfile
 	};
 }

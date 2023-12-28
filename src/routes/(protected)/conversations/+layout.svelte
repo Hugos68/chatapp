@@ -1,21 +1,14 @@
 <script lang="ts">
-	export let data;
+	import ConversationTile from './ConversationTile.svelte';
 
-	$: ({ conversations } = data);
+	export let data;
 </script>
 
-<div class="grid grid-cols-[20%_1fr]">
+<div class="grid grid-cols-[25%_1fr]">
 	<aside class="h-screen bg-stone-200 dark:bg-stone-800">
 		<ul>
-			{#each conversations as { id, title }}
-				<li>
-					<a
-						class="block p-2 w-full bg-stone-300 dark:bg-stone-700"
-						href="/conversations/{id}"
-					>
-						{title}
-					</a>
-				</li>
+			{#each data.conversations as conversation, index}
+				<ConversationTile {conversation} {index} />
 			{/each}
 		</ul>
 	</aside>

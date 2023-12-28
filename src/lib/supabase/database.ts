@@ -31,7 +31,7 @@ export interface Database {
 						foreignKeyName: 'conversation_users_user_id_fkey';
 						columns: ['user_id'];
 						isOneToOne: false;
-						referencedRelation: 'users';
+						referencedRelation: 'profiles';
 						referencedColumns: ['id'];
 					}
 				];
@@ -88,6 +88,29 @@ export interface Database {
 						foreignKeyName: 'messages_user_id_fkey';
 						columns: ['user_id'];
 						isOneToOne: false;
+						referencedRelation: 'profiles';
+						referencedColumns: ['id'];
+					}
+				];
+			};
+			profiles: {
+				Row: {
+					id: string;
+					username: string;
+				};
+				Insert: {
+					id: string;
+					username: string;
+				};
+				Update: {
+					id?: string;
+					username?: string;
+				};
+				Relationships: [
+					{
+						foreignKeyName: 'profiles_id_fkey';
+						columns: ['id'];
+						isOneToOne: true;
 						referencedRelation: 'users';
 						referencedColumns: ['id'];
 					}
