@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { createConversationMessageStore } from '$lib/stores/conversation-message-store';
-	import type { ExtractTableType } from '$lib/supabase/types';
+	import type { ConversationWithMessagesWithProfile } from '$lib/supabase/types';
 
-	export let conversation: ExtractTableType<'conversations'> & {
-		messages: (ExtractTableType<'messages'> & { profile: ExtractTableType<'profiles'> })[];
-	};
+	export let conversation: ConversationWithMessagesWithProfile;
 
 	export let index: number;
 

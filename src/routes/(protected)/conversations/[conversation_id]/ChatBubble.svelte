@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { ExtractTableType } from '$lib/supabase/types';
+	import type { MessageWithProfile } from '$lib/supabase/types';
 
-	export let message: ExtractTableType<'messages'> & { profile: ExtractTableType<'profiles'> };
+	export let message: MessageWithProfile;
 
 	$: ourMessage = message.user_id === $page.data.session?.user.id;
 </script>

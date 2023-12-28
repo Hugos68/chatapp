@@ -1,9 +1,7 @@
 import { readable } from 'svelte/store';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from 'lucide-svelte';
-import type { ExtractTableType } from '$lib/supabase/types';
-
-type MessageWithProfile = ExtractTableType<'messages'> & { profile: ExtractTableType<'profiles'> };
+import type { Message, MessageWithProfile } from '$lib/supabase/types';
 
 export function createConversationMessageStore(
 	supabase: SupabaseClient<Database>,
@@ -22,7 +20,7 @@ export function createConversationMessageStore(
 					filter: `conversation_id=eq.${conversationID}`
 				},
 				async (payload) => {
-					const newMessage = payload.new as MessageWithProfile;
+					const newMessage = payload.new as Message;
 
 					const { data: profile } = await supabase
 						.from('profiles')
@@ -31,11 +29,9 @@ export function createConversationMessageStore(
 						.limit(1)
 						.single();
 
-					const newMessageWithProfile = {
+					const newMessageWithProfile: MessageWithProfile = {
 						...newMessage,
 						profile
-					} as MessageWithProfile & {
-						profile: ExtractTableType<'profiles'>;
 					};
 
 					update((messages) => {

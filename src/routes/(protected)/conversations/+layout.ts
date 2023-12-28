@@ -1,23 +1,18 @@
-import type { QueryData } from '@supabase/supabase-js';
+import type { ConversationWithMessagesWithProfile } from '$lib/supabase/types.js';
 import { error } from '@sveltejs/kit';
 
 export async function load({ parent }) {
 	const { supabase } = await parent();
 
-	const conversationWithMessagesQuery = supabase
+	const { data: conversations, error: conversationsError } = await supabase
 		.from('conversations')
 		.select('*, messages (*, profile:profiles (*))')
-		.order('created_at', { referencedTable: 'messages', ascending: false });
-
-	type ConversationWithMessageAndProfile = QueryData<typeof conversationWithMessagesQuery>;
-
-	const { data: conversations, error: conversationsError } = await conversationWithMessagesQuery;
+		.order('created_at', { referencedTable: 'messages', ascending: false })
+		.returns<ConversationWithMessagesWithProfile[]>();
 
 	if (conversationsError) {
 		error(400, conversationsError.message);
 	}
 
-	return {
-		conversations: conversations as ConversationWithMessageAndProfile
-	};
+	return { conversations };
 }
