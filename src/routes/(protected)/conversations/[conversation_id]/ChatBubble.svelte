@@ -12,6 +12,6 @@
 	class:text-end={ourMessage}
 	class="bg-stone-300 dark:bg-stone-700 p-2 max-w-[33vw]"
 >
-	<p class="text-sm opacity-[50%]">{message.profile.username}</p>
+	<p class="text-sm opacity-50">{message.profile.username}</p>
 	<p>{message.content}</p>
 </div>

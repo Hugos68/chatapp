@@ -1,3 +1,4 @@
+import type { DialogInstance } from '$lib/stores/dialog-store';
 import type { Database } from '$lib/supabase/database';
 import { SupabaseClient, Session } from '@supabase/supabase-js';
 
@@ -10,6 +11,9 @@ declare global {
 		interface PageData {
 			supabase: SupabaseClient<Database>;
 			session: Session | null;
+		}
+		interface PageState {
+			dialogInstances: DialogInstance[];
 		}
 		// interface Error {}
 		// interface Platform {}

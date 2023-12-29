@@ -41,16 +41,19 @@ export interface Database {
 					created_at: string;
 					id: number;
 					title: string;
+					type: Database['public']['Enums']['ConversationType'];
 				};
 				Insert: {
 					created_at?: string;
 					id?: number;
 					title: string;
+					type: Database['public']['Enums']['ConversationType'];
 				};
 				Update: {
 					created_at?: string;
 					id?: number;
 					title?: string;
+					type?: Database['public']['Enums']['ConversationType'];
 				};
 				Relationships: [];
 			};
@@ -129,7 +132,7 @@ export interface Database {
 			};
 		};
 		Enums: {
-			[_ in never]: never;
+			ConversationType: 'Group' | 'Private';
 		};
 		CompositeTypes: {
 			[_ in never]: never;

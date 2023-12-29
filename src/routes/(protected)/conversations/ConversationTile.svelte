@@ -25,7 +25,9 @@
 	<a href="/conversations/{conversation.id}">
 		<p>{conversation.title}</p>
 		{#if lastSendMessage}
-			<p>{lastSendMessage.profile.username}: {lastSendMessage.content}</p>
+			<p class="text-sm opacity-50">
+				{lastSendMessage.profile.username}: {lastSendMessage.content}
+			</p>
 		{/if}
 	</a>
 </li>
